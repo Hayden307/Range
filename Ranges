@@ -1,0 +1,32 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+# Define the vectors
+a1 = np.array([1, 1, 0])
+a2 = np.array([2, 1, 2])
+
+# Create a figure
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+# Plot the vectors
+ax.quiver(0, 0, 0, a1[0], a1[1], a1[2], color='r', label='a1')
+ax.quiver(0, 0, 0, a2[0], a2[1], a2[2], color='g', label='a2')
+
+# Create a mesh grid for the plane
+c1 = np.linspace(-1, 1, 10)
+c2 = np.linspace(-1, 1, 10)
+C1, C2 = np.meshgrid(c1, c2)
+V = np.array([C1 + 2*C2, C1 + C2, 2*C2])
+
+# Plot the plane
+ax.plot_surface(V[0], V[1], V[2], alpha=0.5, rstride=100, cstride=100)
+
+# Set plot labels
+ax.set_xlabel('X axis')
+ax.set_ylabel('Y axis')
+ax.set_zlabel('Z axis')
+ax.legend()
+
+plt.show()
